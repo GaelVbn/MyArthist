@@ -15,12 +15,11 @@ export default function Navbar() {
   };
 
   const goToPanier = () => {
-    console.log('clicked');
     router.push("/screens/panier");
   };
 
     return (
-        <div className="navbar bg-rose-50 shadow-md">
+        <div className="navbar bg-slate-800 shadow-md">
   <div className="flex-1">
     <a className="btn btn-ghost text-xl" onClick={handleClick}>MyArthist</a>
   </div>

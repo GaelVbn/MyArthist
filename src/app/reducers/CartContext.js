@@ -16,6 +16,7 @@ export const articlesSlice = createSlice({
         state.value.push(action.payload);
       }
     },
+
     removeArticlesToStore: (state, action) => {
       state.value = state.value.filter(
         (article) => article?.[0]?._id !== action.payload

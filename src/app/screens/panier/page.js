@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { useRouter } from "next/navigation";
 import "../../page.css";
 import BasketCards from "../../components/BasketCards";
 import TotalBasket from "../../components/TotalBasket";
@@ -7,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeArticlesToStore } from "@/app/reducers/CartContext";
 
 export default function Panier() {
+  const router = useRouter();
   const dispatch = useDispatch();
   const articles = useSelector((state) => state.articles.value);
   const price = articles?.[0]?.[0].price;
@@ -14,8 +16,11 @@ export default function Panier() {
   const totalPrice = price * articles.length || 0;
 
   const removeArticle = (id) => {
-    console.log(articles);
     dispatch(removeArticlesToStore(id));
+  };
+
+  const handleClick = () => {
+    router.push("/screens/collections/peintures");
   };
 
   const basketCards = articles.map((article) => (
@@ -23,6 +28,7 @@ export default function Panier() {
       key={article?.[0]?._id}
       {...article}
       removeArticle={removeArticle}
+      handleClick={handleClick}
     />
   ));
 
