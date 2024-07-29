@@ -19,7 +19,11 @@ export default function ProductCard(props) {
                 <div className="flex flex-row justify-center ml-9">
                 <button className="relative flex flex-row text-xl bg-slate-700 text-white rounded-full p-2 px-4 " onClick={props.handleClick}>See More</button>
                 <div className="ml-10">
-                <button className="relative flex flex-row  text-xl bg-slate-700 text-white rounded-full p-2 px-4 " onClick={props.handleAddToBasket}>+</button>
+                {props.isAdded ? 
+                (<button className="relative flex flex-row  text-xl bg-sky-600 text-white rounded-full p-2 px-4 " disabled>
+                 Ajouté !
+                </button>) : 
+                (<button className="relative flex flex-row  text-xl bg-slate-700 text-white rounded-full p-2 px-4 hover:bg-rose-400" onClick={props.handleAddToBasket}>+</button> )}
                 </div>
                 </div>
             </div>

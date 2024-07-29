@@ -9,10 +9,21 @@ export const articlesSlice = createSlice({
   initialState,
   reducers: {
     addArticlesToStore: (state, action) => {
-      state.value.push(action.payload);
+      const articleExists = state.value.some(
+        (article) => article?.[0]?._id === action.payload?.[0]?._id
+      );
+      if (!articleExists) {
+        state.value.push(action.payload);
+      }
+    },
+    removeArticlesToStore: (state, action) => {
+      state.value = state.value.filter(
+        (article) => article?.[0]?._id !== action.payload
+      );
     },
   },
 });
 
-export const { addArticlesToStore } = articlesSlice.actions;
+export const { addArticlesToStore, removeArticlesToStore } =
+  articlesSlice.actions;
 export default articlesSlice.reducer;

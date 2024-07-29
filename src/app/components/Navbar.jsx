@@ -8,12 +8,16 @@ export default function Navbar() {
   const count = useSelector((state) => state.articles.value);
   const price = count?.[0]?.[0].price;
   
-  const totalPrice = price * count.length
+  const totalPrice = price * count.length || 0;
 
   const handleClick = () => {
     router.push("/screens/collections");
   };
 
+  const goToPanier = () => {
+    console.log('clicked');
+    router.push("/screens/panier");
+  };
 
     return (
         <div className="navbar bg-rose-50 shadow-md">
@@ -45,8 +49,8 @@ export default function Navbar() {
         <div className="card-body">
           <span className="text-lg font-bold">{count.length} Items</span>
           <span className="text-info">Subtotal: ${totalPrice}</span>
-          <div className="card-actions">
-            <button className="btn btn-primary btn-block">View cart</button>
+          <div className="card-actions" onClick={goToPanier}>
+            <button className="btn btn-primary btn-block" >View cart</button>
           </div>
         </div>
       </div>
