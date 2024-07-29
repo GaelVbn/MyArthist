@@ -5,6 +5,7 @@ import ProductCard from "../../components/ProductCard";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { addArticlesToStore } from "@/app/reducers/CartContext";
+import BackgroundCollections from "../../components/BackgroundCollections";
 
 export default function Collections() {
   const [images, setImages] = useState([]);
@@ -39,8 +40,11 @@ export default function Collections() {
 
   return (
     <main className="flex flex-col justify-center items-center min-h-screen md:flex-row ">
-      <div className="flex flex-col md:flex-row md:bg-slate-500 md:w-2/4 md:p-5 md:justify-center">
-        {productCards}
+      <div className="flex flex-col  md:flex-col md:w-full md:justify-center">
+        <BackgroundCollections images={images} />
+        <div className="flex flex-col items-center mt-10 md:flex-row md:w-2/4 md:p-5 md:justify-center">
+          {productCards}
+        </div>
       </div>
     </main>
   );
