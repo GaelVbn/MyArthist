@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Cards(props) {
   return (
-    <div className=" w-80 p-3 bg-white rounded-lg shadow-md mb-4">
+    <div className=" w-80 p-3 bg-white rounded-lg shadow-md mb-4 md:my-auto ">
       <div className="img_container bg-bgGray rounded-lg">
         <img src={props.imageUrl} alt={props.title} width={1563} height={1563} />
       </div>

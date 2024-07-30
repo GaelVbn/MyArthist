@@ -22,7 +22,7 @@ export default function Peintures() {
 
   return (
     <main className="flex flex-col justify-center items-center min-h-screen">
-      <div className="flex flex-col items-center lg:w-4/5 lg:mx-auto">
+      <div className="flex flex-col items-center my-10 gap-10 md:flex-row  md:p-5 md:justify-start lg:w-4/5 lg:mx-auto">
         {productCards}
       </div>
     </main>

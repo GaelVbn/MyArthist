@@ -15,7 +15,7 @@ export default function ProductCard({ image, handleClick, handleAddToBasket, isI
   };
 
   return (
-    <div className='w-80 p-3 bg-white rounded-lg shadow-md'>
+    <div className='w-80 p-3 bg-white rounded-lg shadow-md '>
       <div className="img_container bg-bgGray rounded-lg">
         <img src={image.images[0].imageUrl} alt={image.name} width={1563} height={1563} />
       </div>
