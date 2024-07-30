@@ -10,24 +10,14 @@ import BackgroundCollections from "../../components/BackgroundCollections";
 export default function Collections() {
   const article = useSelector((state) => state.articles.value);
   const [images, setImages] = useState([]);
-  const [isAdded, setIsAdded] = useState(false);
 
   const dispatch = useDispatch();
   const router = useRouter();
 
-  useEffect(() => {
-    // Vérifie si l'article est déjà dans le panier au chargement du composant
-    const isCardAdded = article.some((article) => article?._id === images?._id);
-    setIsAdded(isCardAdded);
-  }, [article, images]);
-
-  const handleAddToBasket = () => {
-    // Vérifie si l'article est déjà dans le panier avant de l'ajouter
-    const isCardAdded = article.some((article) => article?._id === images?._id);
-
+  const handleAddToBasket = (image) => {
+    const isCardAdded = article.some((article) => article?._id === image?._id);
     if (!isCardAdded) {
-      dispatch(addArticlesToStore(images));
-      setIsAdded(true);
+      dispatch(addArticlesToStore(image));
     }
   };
 
@@ -44,10 +34,10 @@ export default function Collections() {
   const productCards = images.map((image) => (
     <ProductCard
       key={image._id}
-      {...image}
+      image={image}
       handleClick={handleClick}
-      handleAddToBasket={handleAddToBasket}
-      isAdded={isAdded}
+      handleAddToBasket={() => handleAddToBasket(image)}
+      isInCart={article.some((article) => article._id === image._id)}
     />
   ));
 
@@ -55,7 +45,7 @@ export default function Collections() {
     <main className="flex flex-col justify-center md:flex-row md:min-h-screen ">
       <div className="flex flex-col  md:flex-col md:w-full">
         <BackgroundCollections images={images} />
-        <div className="flex flex-col items-center mt-10 md:flex-row md:w-2/4 md:p-5 md:justify-center">
+        <div className="flex flex-col items-center mt-10 mb-10 gap-10 md:flex-row md:flex-wrap md:mx-14  md:p-5 md:justify-center">
           {productCards}
         </div>
       </div>

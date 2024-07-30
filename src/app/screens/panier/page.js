@@ -11,7 +11,7 @@ export default function Panier() {
   const router = useRouter();
   const dispatch = useDispatch();
   const articles = useSelector((state) => state.articles.value);
-  const price = articles?.[0]?.[0].price;
+  const price = articles[0]?.price;
 
   const totalPrice = price * articles.length || 0;
 
@@ -25,10 +25,11 @@ export default function Panier() {
 
   const basketCards = articles.map((article) => (
     <BasketCards
-      key={article?.[0]?._id}
+      key={article?._id}
       {...article}
       removeArticle={removeArticle}
       handleClick={handleClick}
+      totalPrice={totalPrice}
     />
   ));
 

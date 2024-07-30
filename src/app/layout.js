@@ -6,6 +6,7 @@ import Navbar from "../app/components/Navbar";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import articles from "../app/reducers/CartContext";
+import Footer from "../app/components/Footer";
 
 // Configurez votre store Redux
 const store = configureStore({
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
             <Navbar />
             <main>{children}</main>
           </div>
+          <Footer />
         </body>
       </html>
     </Provider>

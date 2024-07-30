@@ -6,8 +6,7 @@ import { useRouter } from "next/navigation";
 export default function Navbar() {
   const router = useRouter(); 
   const count = useSelector((state) => state.articles.value);
-  const price = count?.[0]?.[0].price;
-  
+  const price = count?.[0]?.price;
   const totalPrice = price * count.length || 0;
 
   const handleClick = () => {
@@ -18,10 +17,33 @@ export default function Navbar() {
     router.push("/screens/panier");
   };
 
+  const goToCollections = () => {
+    router.push("/screens/collections");
+  };
+
     return (
         <div className="navbar bg-slate-800 shadow-md">
   <div className="flex-1">
-    <a className="btn btn-ghost text-xl" onClick={handleClick}>MyArthist</a>
+    <a className="btn btn-ghost text-xl" onClick={handleClick}>My ArtHist</a>
+  </div>
+  <div className="flex gap-2 mr-2 md:mr-10 md:gap-10">
+  <div className="flex-none">
+    <div className="dropdown dropdown-end">
+      <div tabIndex={0} role="button" className=" bg-slate-800">
+        <div className="indicator">
+          <button className="btn btn-ghost btn-md">Designs</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div className="flex-none">
+    <div className="dropdown dropdown-end">
+      <div tabIndex={0} role="button" className=" bg-slate-800">
+        <div className="indicator">
+          <button className="btn btn-ghost btn-md" onClick={goToCollections}>Collections</button>
+        </div>
+      </div>
+    </div>
   </div>
   <div className="flex-none">
     <div className="dropdown dropdown-end">
@@ -53,6 +75,7 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </div>

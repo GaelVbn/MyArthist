@@ -17,7 +17,7 @@ export default function BackgroundCollections(props) {
         Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
         quasi. In deleniti eaque aut repudiandae et a id nisi.
       </p>
-      <button className="btn btn-primary">Collections</button>
+      <button className="btn btn-primary">All Designs</button>
     </div>
   </div>
 </div>
