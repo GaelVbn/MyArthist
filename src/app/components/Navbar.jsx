@@ -21,6 +21,10 @@ export default function Navbar() {
     router.push("/screens/collections");
   };
 
+  const goToDesigns = () => {
+    router.push("/screens/Designs");
+  };
+
     return (
         <div className="navbar bg-slate-800 shadow-md">
   <div className="flex-1">
@@ -31,7 +35,7 @@ export default function Navbar() {
     <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className=" bg-slate-800">
         <div className="indicator">
-          <button className="btn btn-ghost btn-md">Designs</button>
+          <button className="btn btn-ghost btn-md" onClick={goToDesigns}>Designs</button>
         </div>
       </div>
     </div>

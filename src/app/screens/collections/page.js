@@ -21,8 +21,9 @@ export default function Collections() {
     }
   };
 
-  const handleClick = () => {
-    router.push("/screens/collections/peintures");
+  const handleClick = (id) => {
+    router.push(`/screens/collections/peintures/${id}`);
+    console.log("ID cliqué :", id);
   };
 
   useEffect(() => {

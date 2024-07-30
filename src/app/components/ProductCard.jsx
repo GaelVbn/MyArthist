@@ -25,12 +25,30 @@ export default function ProductCard({ image, handleClick, handleAddToBasket, isI
         <p className="mt-1 text-slate-400">{image.description}</p>
         <span className="mt-4 font-bold text-lg">$ {image.price}</span>
         <div className="flex flex-row justify-center ml-9">
-          <button className="relative flex flex-row text-xl bg-slate-500 text-white rounded-full p-2 px-4" onClick={handleClick}>See More</button>
+          <button
+            className="relative flex flex-row text-xl bg-slate-500 text-white rounded-full p-2 px-4"
+            onClick={() => handleClick(image._id)}
+            aria-label={`Voir plus d'informations sur ${image.name}`}
+          >
+            See More
+          </button>
           <div className="ml-10">
             {isAdded ? (
-              <button className="relative flex flex-row text-xl bg-sky-600 text-white rounded-full p-2 px-4" disabled>Ajouté !</button>
+              <button
+                className="relative flex flex-row text-xl bg-sky-600 text-white rounded-full p-2 px-4"
+                disabled
+                aria-label="Produit déjà ajouté au panier"
+              >
+                Ajouté !
+              </button>
             ) : (
-              <button className="relative flex flex-row text-xl bg-slate-500 text-white rounded-full p-3 px-4 hover:bg-rose-400 w-fit" onClick={handleButtonClick}><TbBasketHeart /></button>
+              <button
+                className="relative flex flex-row text-xl bg-slate-500 text-white rounded-full p-3 px-4 hover:bg-rose-400 w-fit"
+                onClick={handleButtonClick}
+                aria-label={`Ajouter ${image.name} au panier`}
+              >
+                <TbBasketHeart />
+              </button>
             )}
           </div>
         </div>

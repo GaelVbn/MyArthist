@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import Cards from "../../../components/Cards";
+import Cards from "../../components/Cards";
 import { useState, useEffect } from "react";
-import "../../../globals.css";
-import "../../../page.css";
+import "../../../app/globals.css";
+import "../../../app/page.css";
 
 export default function Peintures() {
   const [images, setImages] = useState([]);
