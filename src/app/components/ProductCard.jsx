@@ -1,9 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { TbBasketHeart } from "react-icons/tb";
+import { FaStar } from "react-icons/fa";
+import { TbHeart } from "react-icons/tb";
 
 export default function ProductCard({ image, handleClick, handleAddToBasket, isInCart }) {
   const [isAdded, setIsAdded] = useState(isInCart);
+  const [rating, setRating] = useState(0);
 
   useEffect(() => {
     setIsAdded(isInCart);
@@ -13,6 +16,11 @@ export default function ProductCard({ image, handleClick, handleAddToBasket, isI
     handleAddToBasket();
     setIsAdded(true);
   };
+
+  const handleRatingClick = (newRating) => {
+    setRating(newRating);
+  };
+
 
   return (
     <div className='w-80 p-3 bg-white rounded-lg shadow-md '>
@@ -24,6 +32,21 @@ export default function ProductCard({ image, handleClick, handleAddToBasket, isI
         <h5 className="text-xl font-semibold">{image.name}</h5>
         <p className="mt-1 text-slate-400">{image.description}</p>
         <span className="mt-4 font-bold text-lg">$ {image.price}</span>
+        <div className="flex flex-row justify-center mt-2">
+          {[...Array(5)].map((star, index) => {
+            const ratingValue = index + 1;
+            return (
+              <FaStar
+                key={index}
+                size={24}
+                color={ratingValue <= rating ? "#ffc107" : "#e4e5e9"}
+                onClick={() => handleRatingClick(ratingValue)}
+                style={{ cursor: "pointer" }}
+              />
+            );
+          })}
+        </div>
+
         <div className="flex flex-row justify-center ml-9">
           <button
             className="relative flex flex-row text-xl bg-slate-500 text-white rounded-full p-2 px-4"
@@ -51,6 +74,9 @@ export default function ProductCard({ image, handleClick, handleAddToBasket, isI
               </button>
             )}
           </div>
+        </div>
+        <div className="flex flex-row justify-center mt-4">
+          <button className="relative flex flex-row text-xl bg-slate-500 text-white rounded-full p-3 px-4 hover:bg-rose-400 w-fit"><TbHeart /></button>
         </div>
       </div>
     </div>

@@ -10,6 +10,7 @@ import BackgroundCollections from "../../components/BackgroundCollections";
 export default function Collections() {
   const article = useSelector((state) => state.articles.value);
   const [images, setImages] = useState([]);
+  const [notes, setNotes] = useState([]);
 
   const dispatch = useDispatch();
   const router = useRouter();
