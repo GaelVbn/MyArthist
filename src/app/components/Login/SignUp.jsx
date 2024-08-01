@@ -34,11 +34,11 @@ export default function SignUp({ onSuccess }) {
 
       const result = await response.json();
       setSuccess("Account created successfully");
-      router.push("/screens/collections");
+      dispatch(loginUser({ token: result.token, username}));
       setUsername("");
       setEmail("");
       setPassword("");
-      dispatch(loginUser(result.user));
+      router.push("/screens/collections");
       if (onSuccess) onSuccess();
     } catch (error) {
       setError(error.message);
@@ -56,7 +56,7 @@ export default function SignUp({ onSuccess }) {
               </label>
               <div className="mt-2">
                 <input
-                  id="Username"
+                  id="username"
                   name="username"
                   type="text"
                   required

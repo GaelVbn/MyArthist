@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../reducers/Login";
 import { useRouter } from "next/navigation";
 import { FaSignInAlt } from "react-icons/fa";
+import { FaSignOutAlt } from "react-icons/fa";
 import SignIn from "./Login/SignIn";
 
 export default function Navbar() {
@@ -46,7 +47,7 @@ export default function Navbar() {
       <div className="flex-1">
         <a className="btn btn-ghost md:text-xl text-pretty" onClick={handleClick}>My ArtHist</a>
       </div>
-      <div className="flex mr-2 md:mr-10 md:gap-10">
+      <div className="flex  ml-2 md:mr-10 md:gap-10">
         <div className="flex-none">
           <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className=" bg-slate-800">
@@ -103,6 +104,7 @@ export default function Navbar() {
         <div className="flex items-center space-x-2 text-white">
           <span className="font-semibold">{user.username}</span>
           {/* Optionnel : Bouton de déconnexion */}
+          
           <button 
             className="btn btn-ghost"
             onClick={() => {
@@ -110,7 +112,7 @@ export default function Navbar() {
               console.log("Déconnexion"); 
             }}
           >
-            Logout
+            <FaSignOutAlt />
           </button>
         </div>
       ) : (

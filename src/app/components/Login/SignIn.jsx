@@ -30,9 +30,10 @@ export default function SignIn({ onSuccess }) {
       }
 
       const result = await response.json();
+      const { token, username } = result;
       setSuccess("Login successful");
-      dispatch(loginUser(result.user));
-      console.log("Result:", result.user);
+      dispatch(loginUser({ token, username }));
+      console.log("Result:", result);
       setEmail("");
       setPassword("");
       if (onSuccess) onSuccess();
@@ -61,7 +62,7 @@ export default function SignIn({ onSuccess }) {
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         {!showSignUp ? (
-          <form onClick={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                 Email address
