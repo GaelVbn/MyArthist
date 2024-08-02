@@ -1,12 +1,11 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { TbBasketHeart } from "react-icons/tb";
-import { FaStar } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 
-export default function ProductCard({ image, handleClick, handleAddToBasket, isInCart }) {
+export default function ProductCard({ image, handleClick, handleAddToBasket, handleLike, isInCart, isLikedInitially }) {
   const [isAdded, setIsAdded] = useState(isInCart);
-  const [rating, setRating] = useState(0);
+  const [isLiked, setIsLiked] = useState(isLikedInitially);
 
   useEffect(() => {
     setIsAdded(isInCart);
@@ -17,10 +16,11 @@ export default function ProductCard({ image, handleClick, handleAddToBasket, isI
     setIsAdded(true);
   };
 
-  const handleRatingClick = (newRating) => {
-    setRating(newRating);
+  const handleLikeClick = () => {
+    const newIsLiked = !isLiked;
+    setIsLiked(newIsLiked);
+    handleLike(image, newIsLiked); // Notify parent of the new liked state
   };
-
 
   return (
     <div className='w-80 p-3 bg-white rounded-lg shadow-md '>
@@ -32,7 +32,6 @@ export default function ProductCard({ image, handleClick, handleAddToBasket, isI
         <h5 className="text-xl font-semibold">{image.name}</h5>
         <p className="mt-1 text-slate-400">{image.description}</p>
         <span className="mt-4 font-bold text-lg">$ {image.price}</span>
-
 
         <div className="flex flex-row justify-between items-center mt-6">
           <button
@@ -62,25 +61,10 @@ export default function ProductCard({ image, handleClick, handleAddToBasket, isI
             )}
           </div>
         </div>
-        <div className="flex flex-row justify-between items-center mt-4 ">
-        <div className="flex flex-row justify-center">
-          {[...Array(5)].map((star, index) => {
-            const ratingValue = index + 1;
-            return (
-              <FaStar
-                key={index}
-                size={24}
-                color={ratingValue <= rating ? "#ffc107" : "#e4e5e9"}
-                onClick={() => handleRatingClick(ratingValue)}
-                style={{ cursor: "pointer" }}
-              />
-            );
-          })}
-        <span className="" >(0)</span>
-        </div>
-        <div className="flex flex-row justify-center">
-          <span className="text-xl p-3 px-4" ><FaHeart size={24}/></span>
-        </div>
+        <div className="flex flex-row w-full justify-end mt-4 ">
+          <span className="text-xl p-3 px-4 " onClick={handleLikeClick}>
+            <FaHeart size={24} color={isLiked ? "red" : null} />
+          </span>
         </div>
       </div>
     </div>

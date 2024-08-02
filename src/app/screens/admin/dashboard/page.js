@@ -2,7 +2,7 @@
 import React from "react";
 import AdminRoute from "../../../components/Admin/AdminRoute";
 import { useSelector, useDispatch } from "react-redux";
-import { adminLogout } from "@/app/reducers/admin";
+import { adminLogout } from "@/app/reducers/Admin";
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();

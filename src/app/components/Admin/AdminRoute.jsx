@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
-import { checkAdminAuthentication } from '../../../app/reducers/admin';
+import { checkAdminAuthentication } from '../../../app/reducers/Admin';
 
 const AdminRoute = ({ children }) => {
   const router = useRouter();

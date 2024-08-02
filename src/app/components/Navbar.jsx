@@ -2,9 +2,9 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../reducers/Login";
+import { addArticlesToIsLiked } from "../reducers/CartContext";
 import { useRouter } from "next/navigation";
-import { FaSignInAlt } from "react-icons/fa";
-import { FaSignOutAlt } from "react-icons/fa";
+import { FaSignInAlt, FaHeart, FaSignOutAlt } from "react-icons/fa";
 import SignIn from "./Login/SignIn";
 
 export default function Navbar() {
@@ -12,6 +12,7 @@ export default function Navbar() {
   const router = useRouter(); 
   const count = useSelector((state) => state.articles.value);
   const user = useSelector((state) => state.login.user);
+  const isLiked = useSelector((state) => state.articles.isLiked);
   const price = count?.[0]?.price;
   const totalPrice = price * count.length || 0;
 
@@ -35,24 +36,27 @@ export default function Navbar() {
     router.push("/screens/Designs");
   };
 
+  const goToIsLiked = () => {
+    router.push("/screens/IsLiked");
+  };
+
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
   const handleLogout = () => {
     dispatch(logoutUser());
   };
-
   return (
-    <div className="navbar bg-slate-800 shadow-md">
+    <div className="flex flex-row w-full navbar bg-slate-800 shadow-md">
       <div className="flex-1">
-        <a className="btn btn-ghost md:text-xl text-pretty" onClick={handleClick}>My ArtHist</a>
+        <a className="btn btn-ghost md:text-xl text-transparent md:text-teal-50" onClick={handleClick}>My ArtHist</a>
       </div>
-      <div className="flex  ml-2 md:mr-10 md:gap-10">
+      <div className="absolute right-3 gap-1md:mr-10 md:gap-10  ">
         <div className="flex-none">
           <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className=" bg-slate-800">
               <div className="indicator">
-                <button className="btn btn-ghost btn-md" onClick={goToDesigns}>Designs</button>
+                <button className="btn btn-ghost btn-md text-xs" onClick={goToDesigns}>Designs</button>
               </div>
             </div>
           </div>
@@ -61,7 +65,16 @@ export default function Navbar() {
           <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className=" bg-slate-800">
               <div className="indicator">
-                <button className="btn btn-ghost btn-md" onClick={goToCollections}>Collections</button>
+                <button className="btn btn-ghost btn-md text-xs" onClick={goToCollections}>Collections</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex-none">
+          <div className="dropdown dropdown-end">
+            <div tabIndex={0} role="button" className=" bg-slate-800">
+              <div className="indicator">
+                <button className="btn btn-ghost btn-md text-xs" onClick={goToIsLiked}>{isLiked.length}<FaHeart/></button>
               </div>
             </div>
           </div>
@@ -98,11 +111,10 @@ export default function Navbar() {
             </div>
           </div>
         </div>
-      </div>
-      {/* Affichage conditionnel du bouton de connexion ou du nom d'utilisateur */}
+              {/* Affichage conditionnel du bouton de connexion ou du nom d'utilisateur */}
       {user ? (
-        <div className="flex items-center space-x-2 text-white">
-          <span className="font-semibold">{user.username}</span>
+        <div className="flex items-center space-x-2 text-white ">
+          <span className="text-sm">{user.username}</span>
           {/* Optionnel : Bouton de déconnexion */}
           
           <button 
@@ -128,6 +140,8 @@ export default function Navbar() {
           <label className="modal-backdrop" onClick={closeModal}>Close</label>
         </div>
       )}
+      </div>
+
     </div>
   );
 }

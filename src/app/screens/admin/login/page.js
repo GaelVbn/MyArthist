@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
-import { adminLogin } from "../../../reducers/admin";
+import { adminLogin } from "../../../reducers/Admin";
 
 const AdminLogin = () => {
   const dispatch = useDispatch();

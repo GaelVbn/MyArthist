@@ -4,13 +4,18 @@ import "../../page.css";
 import ProductCard from "../../components/ProductCard";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { addArticlesToStore } from "@/app/reducers/CartContext";
+import {
+  addArticlesToStore,
+  addArticlesToIsLiked,
+  removeArticleFromLiked,
+} from "@/app/reducers/CartContext";
 import BackgroundCollections from "../../components/BackgroundCollections";
 
 export default function Collections() {
   const article = useSelector((state) => state.articles.value);
   const [images, setImages] = useState([]);
-  const [notes, setNotes] = useState([]);
+  const likedArticles = useSelector((state) => state.articles.isLiked) || [];
+  console.log("Liked Articles:", likedArticles);
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -26,6 +31,13 @@ export default function Collections() {
     router.push(`/screens/collections/peintures/${id}`);
     console.log("ID cliqué :", id);
   };
+  const handleLike = (image, newIsLiked) => {
+    if (newIsLiked) {
+      dispatch(addArticlesToIsLiked(image));
+    } else {
+      dispatch(removeArticleFromLiked(image._id));
+    }
+  };
 
   useEffect(() => {
     fetch("http://localhost:3001/collections")
@@ -39,6 +51,10 @@ export default function Collections() {
       image={image}
       handleClick={handleClick}
       handleAddToBasket={() => handleAddToBasket(image)}
+      handleLike={handleLike}
+      isLikedInitially={likedArticles.some(
+        (article) => article._id === image._id
+      )}
       isInCart={article.some((article) => article._id === image._id)}
     />
   ));
