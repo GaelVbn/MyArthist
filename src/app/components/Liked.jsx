@@ -1,9 +1,13 @@
 import React from "react";
+import { FaHeartCircleXmark } from "react-icons/fa6"
 
 export default function AllDesignsCards(props) {
   return (
     
     <div className=" w-80 p-3 bg-white rounded-lg shadow-md mb-4">
+      <div className="flex justify-end w-full mb-1 cursor-pointer">
+      <FaHeartCircleXmark  className="delete_icon size-7" onClick={props.onUnlike} />
+      </div>
       <div className="img_container bg-bgGray rounded-lg">
         <img src={props.imageUrl} alt={props.title} width={1563} height={1563} />
       </div>
