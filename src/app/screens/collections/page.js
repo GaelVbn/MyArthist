@@ -8,7 +8,7 @@ import {
   addArticlesToStore,
   addArticlesToIsLiked,
   removeArticleFromLiked,
-} from "@/app/reducers/CartContext";
+} from "../../reducers/CartContext";
 import BackgroundCollections from "../../components/BackgroundCollections";
 
 export default function Collections() {
